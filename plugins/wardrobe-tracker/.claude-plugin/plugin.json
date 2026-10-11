@@ -1,0 +1,19 @@
+{
+  "name": "wardrobe-tracker",
+  "version": "1.0.0",
+  "description": "Tracks your wardrobe pieces, accessories, outfits worn and color pairings on your own private Wardrobe page, suggests outfits for events, plans multi-function events like Indian weddings on a shareable page, and surfaces insights and shopping gaps.",
+  "author": {
+    "name": "Bench Log",
+    "url": "https://github.com/benchlog-ai"
+  },
+  "homepage": "https://benchlog-ai.github.io",
+  "repository": "https://github.com/benchlog-ai/plugins",
+  "keywords": [
+    "wardrobe",
+    "outfits",
+    "style",
+    "color",
+    "fashion"
+  ],
+  "license": "MIT"
+}

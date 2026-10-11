@@ -1,0 +1,11 @@
+{
+  "name": "benchlog",
+  "owner": { "name": "Bench Log", "url": "https://github.com/benchlog-ai" },
+  "metadata": { "description": "Claude plugins from the Bench Log experiments (@benchlog.ai). Each one keeps your data on your own private page." },
+  "plugins": [
+    { "name": "wardrobe-tracker", "source": "./plugins/wardrobe-tracker", "description": "Exp. 001 · A wardrobe Claude remembers: pieces, outfits, color pairings, event plans and shopping gaps." },
+    { "name": "larder", "source": "./plugins/larder", "description": "Exp. 002 · Your pantry, balanced meal plans and the grocery list on one page you and Claude both edit." },
+    { "name": "footprints", "source": "./plugins/footprints", "description": "Exp. 003 · A travel map of where you've been, a postcard bucket list and trip plans with tickets and packing." },
+    { "name": "gourmet-trails", "source": "./plugins/gourmet-trails", "description": "Exp. 004 · A restaurant log built from your food photos, with a wishlist, recommendations and shareable lists." }
+  ]
+}

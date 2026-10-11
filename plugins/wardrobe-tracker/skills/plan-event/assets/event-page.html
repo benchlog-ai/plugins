@@ -1,0 +1,137 @@
+<title>{{EVENT_TITLE}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: event header, family color themes, then a vertical timeline of functions — each card pairs the dress code + theme with the planned outfit */
+:root{
+  --bg:#f4f4f6; --surface:#ffffff; --fg:#22202a; --muted:#66636f; --line:#e0dfe5;
+  --accent:#b7791f; --accent-soft:#f6ecd9; --ok:#2e7d4f; --warn:#a35a12; --bad:#b4442f;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"IBM Plex Sans",ui-sans-serif,system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#16151a; --surface:#1f1d24; --fg:#ecebef; --muted:#a19ead; --line:#312e38;
+  --accent:#e2a94a; --accent-soft:#3a2f1c; --ok:#6cc493; --warn:#e3a35e; --bad:#e58b77; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#16151a; --surface:#1f1d24; --fg:#ecebef; --muted:#a19ead; --line:#312e38;
+  --accent:#e2a94a; --accent-soft:#3a2f1c; --ok:#6cc493; --warn:#e3a35e; --bad:#e58b77; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:900px;margin:0 auto;padding-inline:20px;padding-block:28px 64px;display:flex;flex-direction:column;gap:32px}
+h1,h2,h3{font-family:var(--display);font-weight:700;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(28px,5vw,42px);line-height:1.1}
+h2{font-size:20px}
+h3{font-size:22px}
+.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.mono{font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+header{display:flex;flex-direction:column;gap:8px}
+.facts{display:flex;flex-wrap:wrap;gap:6px 20px;color:var(--muted)}
+.status{font-size:12px;color:var(--muted)}
+.section-head{display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:12px}
+.themes{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.theme{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.strip{display:flex;height:22px;border-radius:3px;overflow:hidden;border:1px solid var(--line)}
+.strip i{flex:1}
+.timeline{display:flex;flex-direction:column;gap:0;position:relative}
+.fn{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;padding-block:18px;border-top:1px solid var(--line)}
+.fn:first-child{border-top:0}
+.when{display:flex;flex-direction:column;gap:2px}
+.when .day{font-family:var(--display);font-size:22px;line-height:1;font-weight:700}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:baseline}
+.code{display:inline-block;background:var(--accent-soft);color:var(--fg);border-radius:3px;padding:2px 8px;font-size:13px;font-weight:600}
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+@media (max-width:600px){.row2{grid-template-columns:minmax(0,1fr)}.fn{grid-template-columns:minmax(0,1fr);gap:8px}.when{flex-direction:row;gap:10px;align-items:baseline}}
+.label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.cchip{display:inline-flex;align-items:center;gap:6px;font-size:13px;border:1px solid var(--line);border-radius:999px;padding:2px 10px 2px 3px}
+.cchip i{width:16px;height:16px;border-radius:50%;border:1px solid var(--line)}
+.cchip.avoid{text-decoration:line-through;color:var(--muted)}
+.pieces{display:flex;flex-direction:column;gap:6px}
+.piece{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;align-items:center}
+.piece .sw{width:28px;height:28px;border-radius:4px;border:1px solid var(--line)}
+.piece .nm{min-width:0;overflow-wrap:anywhere}
+.pill{font-size:11px;font-weight:600;padding:1px 8px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.pill.owned{color:var(--ok)} .pill.to_buy,.pill.to_tailor{color:var(--warn)} .pill.borrow{color:var(--muted)}
+.note{font-size:13px;color:var(--muted);border-left:2px solid var(--accent);padding-left:10px}
+.tbd{font-size:13px;color:var(--muted);font-style:italic}
+.empty{padding:28px 20px;border:1px dashed var(--line);border-radius:6px;color:var(--muted);background:var(--surface)}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow" id="kind">Event plan</div>
+    <h1 id="name">Loading the plan…</h1>
+    <div class="facts" id="facts"></div>
+    <div class="note" id="intro" hidden></div>
+    <div class="status" id="status">Connecting…</div>
+  </header>
+
+  <section id="themes-sec" hidden>
+    <div class="section-head"><h2>Family color themes</h2><span class="mono muted">agreed so far</span></div>
+    <div class="themes" id="themes"></div>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>Functions</h2><span class="mono muted" id="fn-count"></span></div>
+    <div class="timeline" id="timeline"><div class="empty">The functions will appear here once the plan is filled in, each with its dress code, color theme and planned outfit.</div></div>
+  </section>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const okHex=h=>/^#[0-9a-fA-F]{6}$/.test(h||"")?h:"#999999";
+const STATUS={owned:"Owned",to_buy:"To buy",to_tailor:"To tailor",borrow:"Borrow"};
+const state={info:null,fns:[]};
+function fmtDay(d){if(!d)return{day:"TBD",rest:""};const t=new Date(d+"T12:00:00");if(isNaN(t))return{day:esc(d),rest:""};
+  return{day:t.toLocaleDateString(undefined,{day:"numeric",month:"short"}),rest:t.toLocaleDateString(undefined,{weekday:"long"})}}
+function chips(names,colors,cls=""){return (colors||[]).map((h,i)=>`<span class="cchip ${cls}"><i style="background:${okHex(h)}"></i>${esc((names||[])[i]||h)}</span>`).join("")}
+
+function render(){
+  const e=state.info;
+  if(e){
+    $("name").textContent=e.name||"Event plan";
+    $("kind").textContent=e.kind||"Event plan";
+    const dates=[e.start_date,e.end_date].filter(Boolean).filter((v,i,a)=>a.indexOf(v)===i).join(" – ");
+    $("facts").innerHTML=[dates&&`<span class="mono">${esc(dates)}</span>`,e.location&&`<span>${esc(e.location)}</span>`,e.host&&`<span>${esc(e.host)}</span>`].filter(Boolean).join("");
+    $("intro").hidden=!e.notes;$("intro").textContent=e.notes||"";
+    const th=e.family_themes||[];
+    $("themes-sec").hidden=!th.length;
+    $("themes").innerHTML=th.map(t=>`<div class="theme"><b>${esc(t.who||"")}</b>
+      <div class="strip">${(t.colors||[]).map(h=>`<i style="background:${okHex(h)}"></i>`).join("")}</div>
+      <div class="chips">${chips(t.names,t.colors)}</div>${t.note?`<div class="muted" style="font-size:13px">${esc(t.note)}</div>`:""}</div>`).join("");
+  }
+  const fns=[...state.fns].sort((a,b)=>(a.date||"9").localeCompare(b.date||"9")||(a.order??0)-(b.order??0));
+  $("fn-count").textContent=fns.length?fns.length+" functions":"";
+  if(!fns.length)return;
+  $("timeline").innerHTML=fns.map(f=>{
+    const d=fmtDay(f.date);const o=f.outfit||{};const ps=o.pieces||[];
+    return `<article class="fn"><div class="when"><span class="day">${d.day}</span><span class="muted">${esc(d.rest)}</span>${f.time?`<span class="mono muted">${esc(f.time)}</span>`:""}</div>
+    <div class="card">
+      <div class="card-head"><h3>${esc(f.name)}</h3>${f.dress_code?`<span class="code">${esc(f.dress_code)}</span>`:""}</div>
+      ${f.venue?`<div class="muted" style="font-size:13px">${esc(f.venue)}</div>`:""}
+      <div class="row2">
+        <div><div class="label">Color theme</div>
+          <div class="chips">${chips(f.theme_names,f.theme_colors)||`<span class="tbd">No theme set</span>`}</div>
+          ${(f.avoid_colors||[]).length?`<div class="label" style="margin-top:10px">Avoid</div><div class="chips">${chips(f.avoid_names,f.avoid_colors,"avoid")}</div>`:""}
+        </div>
+        <div><div class="label">Planned outfit${o.title?` · ${esc(o.title)}`:""}</div>
+          ${ps.length?`<div class="pieces">${ps.map(p=>`<div class="piece"><span class="sw" style="background:${okHex(p.hex)}"></span><span class="nm">${esc(p.name)}</span>${p.status?`<span class="pill ${esc(p.status)}">${STATUS[p.status]||esc(p.status)}</span>`:""}</div>`).join("")}</div>`:`<span class="tbd">Not planned yet</span>`}
+        </div>
+      </div>
+      ${f.coordination_note?`<div class="note">${esc(f.coordination_note)}</div>`:""}
+      ${o.note?`<div class="muted" style="font-size:13px">${esc(o.note)}</div>`:""}
+    </div></article>`}).join("");
+}
+
+(async()=>{
+  const db=await window.claude?.use?.("db");
+  if(!db){$("status").textContent="Sign in to claude.ai to see this plan.";$("name").textContent="Event plan";return}
+  $("status").textContent="Live — updates as the plan changes.";
+  const fail=()=>{$("status").textContent="Lost connection to the plan. Reload to reconnect."};
+  db.doc("event/info").onSnapshot(s=>{state.info=s.exists?s.data():null;if(!s.exists)$("name").textContent="Event plan";render()},fail);
+  db.collection("functions").onSnapshot(s=>{state.fns=s.docs.map(d=>({id:d.id,...d.data()}));render()},fail);
+})();
+</script>

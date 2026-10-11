@@ -1,0 +1,19 @@
+{
+  "name": "footprints",
+  "version": "1.0.0",
+  "description": "A personal travel atlas: a shareable map of places you've visited, a postcard bucket list, and trip plans (itinerary, packing, tickets) that Claude plans with you and keeps on your own private Footprints page.",
+  "author": {
+    "name": "Bench Log",
+    "url": "https://github.com/benchlog-ai"
+  },
+  "homepage": "https://benchlog-ai.github.io",
+  "repository": "https://github.com/benchlog-ai/plugins",
+  "keywords": [
+    "travel",
+    "itinerary",
+    "packing",
+    "bucket-list",
+    "map"
+  ],
+  "license": "MIT"
+}

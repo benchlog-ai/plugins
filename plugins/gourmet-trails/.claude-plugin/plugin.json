@@ -1,0 +1,19 @@
+{
+  "name": "gourmet-trails",
+  "version": "1.0.0",
+  "description": "A restaurant log on your own private page: places you have eaten with dish photos (also found and tagged straight from the Mac Photos library), a wishlist with dishes to try, taste-based recommendations, Best of lists, friends' picks and shareable cards.",
+  "author": {
+    "name": "Bench Log",
+    "url": "https://github.com/benchlog-ai"
+  },
+  "homepage": "https://benchlog-ai.github.io",
+  "repository": "https://github.com/benchlog-ai/plugins",
+  "keywords": [
+    "restaurants",
+    "food",
+    "wishlist",
+    "recommendations",
+    "photos"
+  ],
+  "license": "MIT"
+}

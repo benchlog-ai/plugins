@@ -1,0 +1,20 @@
+{
+  "name": "larder",
+  "version": "1.0.0",
+  "description": "Manage your pantry, plan balanced meals and run the grocery list on a private Larder page that you and Claude both edit.",
+  "author": {
+    "name": "Bench Log",
+    "url": "https://github.com/benchlog-ai"
+  },
+  "homepage": "https://benchlog-ai.github.io",
+  "repository": "https://github.com/benchlog-ai/plugins",
+  "keywords": [
+    "pantry",
+    "recipes",
+    "meal-plan",
+    "groceries",
+    "shopping-list",
+    "kitchen"
+  ],
+  "license": "MIT"
+}
